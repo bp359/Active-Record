@@ -7,4 +7,4 @@ define('username','bp359');
 define('password','bTDLnIOQ');
 define('dbname','bp359');
 
-<?
+?>
