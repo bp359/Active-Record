@@ -62,7 +62,6 @@ class collection{
              $statement->execute();
             $class = static::$modelName;
             $statement->setFetchMode(PDO::FETCH_CLASS,$class);
-       
             $recordsSet  =  $statement->fetchAll();
             return $recordsSet;
         }
