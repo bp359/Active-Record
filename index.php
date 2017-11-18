@@ -16,7 +16,7 @@ class dbConn{
             self::$db = new PDO( 'mysql:host=' . CONNECTION .';dbname=' . DATABASE, USERNAME, PASSWORD );
 
             self::$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-            echo 'Connected successfully<br>';
+            echo 'Connected successfully <br>';
         }
 
         catch (PDOException $e) {
@@ -35,47 +35,47 @@ class dbConn{
         return self::$db;
     }
 }
+
 class collection{
-        static public function create(){
-            $model=new static ::$modelName;
-            return $model;
-        }
-        static public function findAll(){
+    static public function create(){
+        $model=new static::$modelName;
+        return $model;
 
-            $db=dbConn::getConnection();
-            $tableName=get_called_class();
-            $sql='SELECT*FROM'.$tableName;
-            $statement=$db->prepare ($sql);
-            $statement->execute();
-            $class=static::$modelName;
-            $statement->setFetchmode(PDO::FETCH_CLASS,$class);
-            $recordSet=$statement->fetchAll();
-            return $recordSet;
-        }
-        public function findOne($id){
-            $db = dbConn::getConnection();
+    }
+    static public funtion findAll()
+    {
+        $db = dbConn::getConnection();
+         $tableName = get_called_class();
 
-            $tableName = get_called_class();
-
-            $sql = 'SELECT * FROM ' . $tableName . ' WHERE id =' . $id;           
-            $statement = $db->prepare($sql);
-             $statement->execute();
-            $class = static::$modelName;
-            $statement->setFetchMode(PDO::FETCH_CLASS,$class);
-            $recordsSet  =  $statement->fetchAll();
-            return $recordsSet;
-        }
-        class accounts extends collection{
-            protected static $modelName='accounts';
-        }
-             
-         class todos extends collection{
-             protected static $modelName='todos';
-         }
-           
+         $sql = 'SELECT * FROM ' . $tableName;
+         $statement = $db->prepare($sql);
+         $statement->execute();
             
-            
+         $class = static::$modelName;
+         $statement->setFetchMode(PDO::FETCH_CLASS, $class);
         
+         $recordsSet =  $statement->fetchAll();
+         return $recordsSet;
+    }
+    static public function findOne($id){
+        $db = dbConn::getConnection();
+         $tableName = get_called_class();
+
+         $sql = 'SELECT * FROM ' . $tableName . ' WHERE id =' . $id;
+         $statement = $db->prepare($sql);
+
+         $statement->execute();
+         $class = static::$modelName;
+         $statement->setFetchMode(PDO::FETCH_CLASS,$class);
+         $recordsSet  =  $statement->fetchAll();
+         return $recordsSet;
+    }
 }
 
+class accounts extends collection{
+    protected static $modelName='accounts';
+}
+class todos extends collection{
+    protected static $modelName='todos';
+}
 
