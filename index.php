@@ -155,8 +155,8 @@ class todo extends model
                public $message = 'message';
                public $isdone = 'isdone';
                static $tableName = 'todos';
-               static $id = '6';
-               static $data = array('nyu@gmail.com','6','2017-11-18','2017-11-22','Done','01');
+               static $id = '124';
+               static $data = array('nyu@gmail.com','100','2017-11-18','2017-11-22','Done','01');
                
                static $columnUpdate = 'isdone';
                static $newInfo ='1';
@@ -211,9 +211,9 @@ class table
       
 
 
-         echo '<h2>Select ID  from Todos Table where ID: 124 <h2>';
+         echo '<h2>Select ID  from Todos Table where ID: 4 <h2>';
 
-         $result= $records->findOne(124);
+         $result= $records->findOne(4);
          table::createTable($result);
 
          
@@ -229,7 +229,7 @@ class table
 
 
 
-         echo '<h2>Update Phone Column in Accounts Table</h2>';
+         echo '<h2>Update Last Name column in Accounts Table to last name Jacobs</h2>';
         
                 $obj = new account;
                 $obj->save();
@@ -242,7 +242,7 @@ class table
 
         echo '<h2>Delete ID from Todos Table </h2>';
             $obj = new todo;
-            $obj->delete(6);
+            $obj->delete();
             
             $records = todos::create();
             $result= $records->findAll();
